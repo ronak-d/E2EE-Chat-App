@@ -40,9 +40,14 @@ io.on("connection", (socket) => {
 
     var gfg = encrypt(msg);
     console.log(gfg);
-    console.log(decrypt(gfg));
+    console.log(`decrypted ${decrypt(gfg)}`);
 
     console.log("payload", {payload});
+    // console.log(io.emit("chat", payload)); //true
+
+    // modifying msg to decrypting msg
+    payload.message=decrypt(gfg);
+
     io.emit("chat", payload);
   });
 });

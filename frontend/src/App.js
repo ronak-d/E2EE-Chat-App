@@ -1,7 +1,7 @@
 import "./App.css";
 
-// import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
+// import { nanoid } from "nanoid";
 import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");

@@ -36,6 +36,7 @@ io.on("connection", (socket) => {
     return decrypted.toString();
     }
 
+    // msg encrypting
     let msg = payload.message;
 
     var gfg = encrypt(msg);

@@ -1,16 +1,10 @@
 import "./App.css";
 
+// import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
-// import { nanoid } from "nanoid";
 
-// no dotenv
 const socket = io.connect("http://localhost:5000");
-
-const EncryptRsa = require('encrypt-rsa').default;
-const encryptRsa = new EncryptRsa();
-
-const { privateKey, publicKey } = encryptRsa.createPrivateAndPublicKeys();
 
 function App() {
   const [message, setMessage] = useState("");

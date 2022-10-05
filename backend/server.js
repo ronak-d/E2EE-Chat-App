@@ -36,7 +36,9 @@ io.on("connection", (socket) => {
     return decrypted.toString();
     }
 
-    var gfg = encrypt("GeeksForGeeks");
+    let msg = payload.message;
+
+    var gfg = encrypt(msg);
     console.log(gfg);
     console.log(decrypt(gfg));
 

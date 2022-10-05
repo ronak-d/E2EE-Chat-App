@@ -9,24 +9,24 @@ const io = require("socket.io")(server, {
 });
 
 io.on("connection", (socket) => {
-  // console.log("What is socket: ", socket);
-  console.log("Socket is active to be connected");
+  console.log("Socket is active");
 
   socket.on("chat", (payload) => {
 
-        // Nodejs encryption with CTR
+    // Nodejs encryption
     const crypto = require('crypto');
     const algorithm = 'aes-256-cbc';
     const key = crypto.randomBytes(32);
     const iv = crypto.randomBytes(16);
 
+    // encryption
     function encrypt(text) {
     let cipher = crypto.createCipheriv('aes-256-cbc',Buffer.from(key), iv);
     let encrypted = cipher.update(text);
     encrypted = Buffer.concat([encrypted, cipher.final()]);
     return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
     }
-
+    // decryption
     function decrypt(text) {
     let iv = Buffer.from(text.iv, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
@@ -42,8 +42,7 @@ io.on("connection", (socket) => {
     console.log(gfg);
     console.log(decrypt(gfg));
 
-
-    console.log("What is payload", payload);
+    console.log("payload", {payload});
     io.emit("chat", payload);
   });
 });
